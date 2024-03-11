@@ -17,6 +17,16 @@ public class CountBits {
         System.out.println("Number of 1 bits " + count);
 
         System.out.println("Code ran in " + (end - start) + " ms");
+
+        System.out.println("For given Input  " + input);
+
+        start = System.currentTimeMillis();
+        count = cb.countBitsFaster(input);
+        end = System.currentTimeMillis();
+
+        System.out.println("Number of 1 bits " + count);
+
+        System.out.println("Code ran in " + (end - start) + " ms");
     }
 
     private int countBits(int x) {
@@ -26,6 +36,15 @@ public class CountBits {
                 count++;
             }
             x >>>= 1;
+        }
+        return count;
+    }
+
+    private int countBitsFaster(int x){
+        int count = 0;
+        while(x != 0){
+            count++;
+            x &=(x-1);
         }
         return count;
     }
