@@ -29,7 +29,7 @@ public class CountBits {
         System.out.println("Code ran in " + (end - start) + " ms");
     }
 
-    private int countBits(int x) {
+    private int countBits(int x) {//O(n) n bits
         int count = 0;
         while (x != 0) {
             if ((x & 1) == 1) {
@@ -39,8 +39,8 @@ public class CountBits {
         }
         return count;
     }
-
-    private int countBitsFaster(int x){
+ 
+    private int countBitsFaster(int x){// O(k) k 1 bits
         int count = 0;
         while(x != 0){
             count++;

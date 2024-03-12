@@ -20,7 +20,7 @@ public class ReverseInteger {
 
     }
 
-    private int reverseInt(int x) {
+    private int reverseInt(int x) {//O(n) n is no of digits
         if (x < 0) {
             return -1 * reverseInt(-x);
         }

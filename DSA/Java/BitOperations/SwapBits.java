@@ -22,7 +22,7 @@ public class SwapBits {
 
     }
 
-    private int swapBits(int x, int i, int j) {
+    private int swapBits(int x, int i, int j) {//O(1)
         if (i > 31 || j > 31 || i < 0 || j < 0) {
             return x;
         }

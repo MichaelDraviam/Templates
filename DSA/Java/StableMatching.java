@@ -39,7 +39,7 @@ public class StableMatching{
     // Prints stable matching for N boys and
     // N girls. Boys are numbered as 0 to 
     // N-1. Girls are numbered as N to 2N-1. 
-    public void match(int[][] prefer){
+    public void match(int[][] prefer){ // O(n2)
 
         //output
         int[] wPref = new int[N];

@@ -20,7 +20,7 @@ public class IsPalindromeInteger {
 
     }
 
-    private boolean isPalindrome(int x) {
+    private boolean isPalindrome(int x) {//O(n) n is no of digits
         if (x <= 0) {
             return x == 0;
         }

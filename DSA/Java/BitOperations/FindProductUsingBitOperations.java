@@ -21,7 +21,7 @@ public class FindProductUsingBitOperations {
 
     }
 
-    private int product(int x, int y) {
+    private int product(int x, int y) {//O(n2) n bits
         int sum = 0;
         while (x != 0) {
             if ((x & 1) != 0) {
@@ -34,7 +34,7 @@ public class FindProductUsingBitOperations {
         return sum;
     }
 
-    private int add(int a, int b) {
+    private int add(int a, int b) { //O(n) n bits
         return b == 0 ? a : add(a ^ b, (a & b) << 1);
     }
 

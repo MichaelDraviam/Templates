@@ -20,7 +20,7 @@ public class ReverseBits {
 
     }
 
-    private int reverseBits(int x) {
+    private int reverseBits(int x) {//O(n) n is bits
         for (int i = 0; i < 16; i++) {
             x = swapBits(x, i, 31 - i);
         }
