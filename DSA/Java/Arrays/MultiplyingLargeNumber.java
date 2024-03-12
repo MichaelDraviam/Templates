@@ -9,18 +9,22 @@ public class MultiplyingLargeNumber {
     public static void main(String[] args) {
         MultiplyingLargeNumber mln = new MultiplyingLargeNumber();
         long start, end;
-        List<Integer> a = new ArrayList<>(List.of(1, 1, 0, 2, 3, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9));
-        List<Integer> b = new ArrayList<>(List.of(-1, 8, 3, 2, 9, 0, 9, 0, 0, 1, 1));
+        List<Integer> b = new ArrayList<>(List.of(1, 1, 0, 2, 3, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9));
+        List<Integer> a = new ArrayList<>(List.of(-1, 8, 3, 2, 9, 0, 9, 0, 0, 1, 1));
+        List<Integer> a2 = new ArrayList<>(List.of(1, 1, 0, 2, 3, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9));
+        List<Integer> b2 = new ArrayList<>(List.of(-1, 8, 3, 2, 9, 0, 9, 0, 0, 1, 1));
         List<Integer> ans;
         List<Integer> ans2;
         System.out.println("input array a " + a);
         System.out.println("input array b " + b);
         start = System.currentTimeMillis();
         ans = mln.multiply(a, b);
-        ans2 = mln.fasterMultiply(a, b);
+        ans2 = mln.fasterMultiply(a2, b2);
         end = System.currentTimeMillis();
-        System.out.println("Multiply array " + ans);
-        System.out.println("Faster Multiply array " + ans);
+        System.out.println("Multiply array ");
+        mln.print(ans);
+        System.out.println("Faster Multiply array ");
+        mln.print(ans2);
         System.out.println("Code ran in " + (end - start) + " ms");
 
     }
@@ -31,30 +35,33 @@ public class MultiplyingLargeNumber {
         if (a.get(0) < 0 ^ b.get(0) < 0) {
             sign = -1;
         } else if (a.get(0) == 0 || b.get(0) == 0) {
-            ans.add(0);
-            return ans;
+            return List.of(0);
         }
         a.set(0, Math.abs(a.get(0)));
         b.set(0, Math.abs(b.get(0)));
-        int place = 1;
         for (int i = b.size() - 1; i >= 0; i--) {
             if (b.get(i) == 0) {
-                place *= 10;
                 continue;
             }
             List<Integer> tmp = new ArrayList<>();
             tmp.addAll(a);
-            int p = place;
+            int p = b.size() - i;
             while (p > 1) {
-                tmp.add(tmp.size(), 0);
-                p /= 10;
+                tmp.add(0);
+                p--;
             }
             multiply(tmp, b.get(i));
             add(ans, tmp);
-            place *= 10;
         }
         ans.set(0, sign * ans.get(0));
         return ans;
+    }
+
+    private void print(List<Integer> a) {
+        for (int i = a.size() - 1; i >= 0; i--) {
+            System.out.print(a.get(i) + ",");
+        }
+        System.out.println();
     }
 
     private void add(List<Integer> a, List<Integer> b) {
@@ -62,9 +69,9 @@ public class MultiplyingLargeNumber {
         int n = a.size(), m = b.size();
 
         int size = Math.min(n, m);
-        for (int i = n - 1; i >= 0 && i > n - m - 1; i--) {
-            carry += a.get(i) + b.get(m + i - n);
-            a.set(i, carry % 10);
+        for (int i = 0; i < size; i++) {
+            carry += a.get(n - i - 1) + b.get(m - i - 1);
+            a.set(n - i - 1, carry % 10);
             carry /= 10;
         }
         while (size < n && carry != 0) {
@@ -101,7 +108,7 @@ public class MultiplyingLargeNumber {
     }
 
     private List<Integer> fasterMultiply(List<Integer> a, List<Integer> b) {// O(nm)
-        final int sign = a.get(0) < 0 ^ b.get(0) < 0 ? -1 : 1;
+        int sign = a.get(0) < 0 ^ b.get(0) < 0 ? -1 : 1;
         a.set(0, Math.abs(a.get(0)));
         b.set(0, Math.abs(b.get(0)));
         List<Integer> ans = new ArrayList<>(Collections.nCopies(a.size() + b.size(), 0));
