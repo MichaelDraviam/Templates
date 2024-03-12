@@ -1,4 +1,4 @@
-package DSA.Java;
+package DSA.Java.BitOperations;
 
 public class SwapBits {
 
