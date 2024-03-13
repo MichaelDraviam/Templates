@@ -25,6 +25,7 @@ public class BuyStockI {
         System.out.println("Code ran in " + (end - start) + " ms");
     }
 
+    @SuppressWarnings("unused")
     private int makeProfitOne(List<Integer> prices) {
         int buy = Integer.MAX_VALUE, profit = Integer.MIN_VALUE;
         for (int price : prices) {

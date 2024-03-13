@@ -11,6 +11,7 @@ public class AdvancingArray {
         }
         System.out.println();
         long start, end;
+        @SuppressWarnings("unused")
         boolean possible;
         int steps;
 
@@ -23,6 +24,7 @@ public class AdvancingArray {
 
     }
 
+    @SuppressWarnings("unused")
     private boolean reachEnd(int[] a) {
         int n = a.length;
         int max = 0;
